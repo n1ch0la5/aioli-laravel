@@ -1,3 +1,14 @@
+After cloning (aioli-laravel)
+1. composer install
+2. npm install
+3. Change .env.example to .env
+4. Update db credentials if needed
+5. run php artisan key:generate
+6. run php artisan:migrate
+7. Run php artisan passport:keys
+8. Create a user at /register
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
