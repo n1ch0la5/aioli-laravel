@@ -7,6 +7,7 @@ After cloning (aioli-laravel)
 6. run php artisan:migrate
 7. Run php artisan passport:keys
 8. Create a user at /register
+9. create a password grant client (I use php artisan passport:install --uuids to create one with uuids and use the password grant client creds)
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
