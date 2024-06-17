@@ -1,5 +1,5 @@
 
-# Backend Auth and Websockets for n1ch0la5/aioli-electron
+## Laravel Backend Auth and Websockets for n1ch0la5/aioli-electron
 For use with Herd (non pro) with site secured (https)
 
 ## setup
