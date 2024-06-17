@@ -3,10 +3,11 @@
 For use with Herd (non pro) with site secured (https)
 
 ## setup
+- git clone into a Herd directory. Secure the site (https)
 - composer install
 - npm install
 - update any env vars  (& rename .env.example to .env)
-- php artisan reverb:install (resets reverb env vars so update REVERB_APP_KEY in electron .env)
+- php artisan reverb:install (resets reverb env vars so update REVERB_APP_KEY in electron .env). Make sure REVERB_SCHEME is https
 - php artisan config:cache
 - php artisan migrate
 - then run `node startdev.js` to start up dev server/reverb/horizon/pulse
