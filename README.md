@@ -11,6 +11,7 @@ For use with Herd (non pro) with site secured (https)
 - php artisan key:generate
 - php artisan config:cache
 - php artisan migrate
+- go to /register and create a new user. save the password to put in the electron .env file
 - install "Open Terminal Programatically" vscode extension
 - then run `node startdev.js` to start up dev server/reverb/horizon/pulse
 
