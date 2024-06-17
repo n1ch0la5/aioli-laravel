@@ -11,8 +11,9 @@ For use with Herd (non pro) with site secured (https)
 - php artisan key:generate
 - php artisan config:cache
 - php artisan migrate
+- npm run build (and maybe npm run dev)
 - go to /register and create a new user. save the password to put in the electron .env file
-- install "Open Terminal Programatically" vscode extension
+- install "Open Terminal Programmatically" vscode extension
 - then run `node startdev.js` to start up dev server/reverb/horizon/pulse
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
