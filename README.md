@@ -7,7 +7,7 @@ For use with Herd (non pro) with site secured (https)
 - composer install
 - npm install
 - update any env vars  (& rename .env.example to .env)
-- php artisan reverb:install (resets reverb env vars so update REVERB_APP_KEY in electron .env). Make sure REVERB_SCHEME is https
+- generate or type unique random strings for each REVERB_APP_ID, REVERB_APP_KEY, REVERB_APP_SECRET in the .env file. These can be random string.
 - php artisan key:generate
 - php artisan config:cache
 - php artisan migrate
