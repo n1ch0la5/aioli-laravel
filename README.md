@@ -5,9 +5,11 @@ For use with Herd (non pro) with site secured (https)
 # setup
 - composer install
 - npm install
+- php artisan reverb:install (resets reverb env vars so update REVERB_APP_KEY in electron .env)
+- update any env vars  (& rename .env.example to .env)
+- php artisan config:cache
 - php artisan migrate
-- update env vars (& rename .env.example to .env)
-- then node startdev.js to start up dev/reverb/horizon/pulse
+- then node startdev.js to start up dev server/reverb/horizon/pulse
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
