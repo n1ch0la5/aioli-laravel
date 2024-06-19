@@ -6,9 +6,10 @@ For use with Herd (non pro) with site secured (https)
 - git clone into a Herd directory. Secure the site (https)
 - composer install
 - npm install
-- update any env vars  (& rename .env.example to .env)
-- generate or type unique random strings for each REVERB_APP_ID, REVERB_APP_KEY, REVERB_APP_SECRET in the .env file. These can be random string.
+- update any env vars, particularly APP_URL and SESSION_DOMAIN
+- rename .env.example to .env
 - php artisan key:generate
+- php artisan key:generate-reverb
 - php artisan config:cache
 - php artisan migrate
 - npm run build (and maybe npm run dev)
