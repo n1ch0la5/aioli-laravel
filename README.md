@@ -8,11 +8,7 @@ For use with Herd (non pro) with site secured (https)
 - npm install
 - update any env vars, particularly APP_URL and SESSION_DOMAIN
 - rename .env.example to .env
-- php artisan key:generate
-- php artisan key:generate-reverb
-- php artisan config:cache
-- php artisan migrate
-- npm run build (and maybe npm run dev)
+- php artisan aioli:setup
 - go to /register and create a new user. save the password to put in the electron .env file
 - install "Open Terminal Programmatically" vscode extension
 - then run `node startdev.js` to start up dev server/reverb/horizon/pulse
