@@ -3,6 +3,7 @@
 For use with Herd (non pro) with site secured (https)
 
 ## setup
+- composer install
 - php artisan aioli:setup
 - go to /register and create a new user. save the password to put in the electron .env file
 - install "Open Terminal Programmatically" vscode extension
