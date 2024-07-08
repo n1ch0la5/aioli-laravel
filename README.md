@@ -1,13 +1,13 @@
-
 ## Laravel Backend Auth and Websockets for n1ch0la5/aioli-electron
 For use with Herd (non pro) with site secured (https)
 
 ## setup
 - composer install
-- php artisan aioli:setup
-- go to /register and create a new user. save the password to put in the electron .env file
-- install "Open Terminal Programmatically" vscode extension
-- then run `node startdev.js` to start up dev server/reverb/horizon/pulse
+- Run `php artisan aioli:setup`
+- Update APP_DOMAIN in .env
+- Create a new user at /register. save the password to put in the electron .env file
+- Install "Open Terminal Programmatically" vscode extension if you haven't already. 
+- Run `node startdev.js` to start up dev server/reverb/horizon/pulse
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 

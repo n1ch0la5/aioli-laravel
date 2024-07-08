@@ -19,18 +19,18 @@ class AioliSetup extends Command
 
     public function handle()
     {
-        $this->info('Installing composer dependencies...');
-        $process = new Process(['composer', 'install']);
-        $process->run(function ($type, $buffer) {
-            echo $buffer;
-        });
+        // $this->info('Installing composer dependencies...');
+        // $process = new Process(['composer', 'install']);
+        // $process->run(function ($type, $buffer) {
+        //     echo $buffer;
+        // });
 
-        if ($process->isSuccessful()) {
-            $this->info('Composer dependencies installed successfully.');
-        } else {
-            $this->error('Error installing composer dependencies.');
-            return;
-        }
+        // if ($process->isSuccessful()) {
+        //     $this->info('Composer dependencies installed successfully.');
+        // } else {
+        //     $this->error('Error installing composer dependencies.');
+        //     return;
+        // }
 
         $this->info('Installing npm dependencies...');
         $process = new Process(['npm', 'install']);
