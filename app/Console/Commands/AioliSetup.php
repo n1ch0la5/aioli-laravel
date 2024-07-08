@@ -19,6 +19,7 @@ class AioliSetup extends Command
 
     public function handle()
     {
+        // Troubleshoot this:
         // $this->info('Installing composer dependencies...');
         // $process = new Process(['composer', 'install']);
         // $process->run(function ($type, $buffer) {
@@ -58,14 +59,14 @@ class AioliSetup extends Command
             $this->info('.env file already exists.');
         }
 
-        $this->info('Updating APP_DOMAIN in .env...');
-        $appDomain = parse_url(config('app.url'), PHP_URL_HOST) ?: 'aioli-laravel.test';
-        file_put_contents(base_path('.env'), preg_replace(
-            '/^APP_DOMAIN=.*$/m',
-            'APP_DOMAIN=' . $appDomain,
-            file_get_contents(base_path('.env'))
-        ));
-        $this->info('APP_DOMAIN updated to ' . $appDomain);
+        // $this->info('Updating APP_DOMAIN in .env...');
+        // $appDomain = parse_url(config('app.url'), PHP_URL_HOST) ?: 'aioli-laravel.test';
+        // file_put_contents(base_path('.env'), preg_replace(
+        //     '/^APP_DOMAIN=.*$/m',
+        //     'APP_DOMAIN=' . $appDomain,
+        //     file_get_contents(base_path('.env'))
+        // ));
+        // $this->info('APP_DOMAIN updated to ' . $appDomain);
 
         $this->info('Generating application key...');
         Artisan::call('key:generate');
