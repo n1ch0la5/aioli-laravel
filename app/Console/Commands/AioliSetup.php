@@ -20,8 +20,10 @@ class AioliSetup extends Command
     public function handle()
     {
         // Troubleshoot this:
+        //Failed to open stream: No such file or directory in /Users/nick/Code/aioli-laravel/artisan on line 9
+        
         // $this->info('Installing composer dependencies...');
-        // $process = new Process(['composer', 'install']);
+        // $process = new Process([base_path('/Users/nick/Library/Application Support/Herd/bin//composer'), 'install']);
         // $process->run(function ($type, $buffer) {
         //     echo $buffer;
         // });
@@ -51,6 +53,9 @@ class AioliSetup extends Command
             if (file_exists(base_path('.env.example'))) {
                 rename(base_path('.env.example'), base_path('.env'));
                 $this->info('.env file created successfully.');
+                $this->updateEnv();                
+                // Delete .env.example
+                // unlink(base_path('.env.example'));
             } else {
                 $this->error('.env.example file not found.');
                 return;
@@ -98,5 +103,52 @@ class AioliSetup extends Command
         }
 
         $this->info('Setup completed successfully.');
+    }
+
+    public function updateEnv(){
+        $this->info('Updating .env file...');
+        $appDomain = basename(base_path()) . '.test';
+        file_put_contents(base_path('.env'), preg_replace(
+            '/^APP_DOMAIN=.*$/m',
+            'APP_DOMAIN=' . $appDomain,
+            file_get_contents(base_path('.env'))
+        ));
+        // update DB_CONNECTION=sqlite to DB_CONNECTION=mysql
+        file_put_contents(base_path('.env'), preg_replace(
+            '/^DB_CONNECTION=.*$/m',
+            'DB_CONNECTION=mysql',
+            file_get_contents(base_path('.env'))
+        ));
+        // update # DB_HOST=127.0.0.1 to DB_HOST=127.0.0.1 (uncomment it)
+        file_put_contents(base_path('.env'), preg_replace(
+            '/^# DB_HOST=.*$/m',
+            'DB_HOST=127.0.0.1',
+            file_get_contents(base_path('.env'))
+        ));
+        // update # DB_PORT=3306 to DB_PORT=3306 (uncomment it)
+        file_put_contents(base_path('.env'), preg_replace(
+            '/^# DB_PORT=.*$/m',
+            'DB_PORT=3306',
+            file_get_contents(base_path('.env'))
+        ));
+        // update # DB_DATABASE=homestead to DB_DATABASE=homestead (uncomment it)
+        file_put_contents(base_path('.env'), preg_replace(
+            '/^# DB_DATABASE=.*$/m',
+            'DB_DATABASE=' . basename(base_path()),
+            file_get_contents(base_path('.env'))
+        ));
+        // update # DB_USERNAME=homestead to DB_USERNAME=homestead (uncomment it)
+        file_put_contents(base_path('.env'), preg_replace(
+            '/^# DB_USERNAME=.*$/m',
+            'DB_USERNAME=homestead',
+            file_get_contents(base_path('.env'))
+        ));
+        // update # DB_PASSWORD=secret to DB_PASSWORD=secret (uncomment it)
+        file_put_contents(base_path('.env'), preg_replace(
+            '/^# DB_PASSWORD=.*$/m',
+            'DB_PASSWORD=secret',
+            file_get_contents(base_path('.env'))
+        ));
+        $this->info('.env file updated successfully.');
     }
 }

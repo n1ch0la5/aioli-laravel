@@ -2,9 +2,9 @@
 For use with Herd (non pro) with site secured (https)
 
 ## setup
+- secure your site (click the lock in the herd Sites page)
 - composer install
 - Run `php artisan aioli:setup`
-- Update APP_DOMAIN in .env
 - Create a new user at /register. save the password to put in the electron .env file
 - Install "Open Terminal Programmatically" vscode extension if you haven't already. 
 - Run `node startdev.js` to start up dev server/reverb/horizon/pulse
