@@ -140,13 +140,13 @@ class AioliSetup extends Command
         // update # DB_USERNAME=homestead to DB_USERNAME=homestead (uncomment it)
         file_put_contents(base_path('.env'), preg_replace(
             '/^# DB_USERNAME=.*$/m',
-            'DB_USERNAME=homestead',
+            'DB_USERNAME=root',
             file_get_contents(base_path('.env'))
         ));
         // update # DB_PASSWORD=secret to DB_PASSWORD=secret (uncomment it)
         file_put_contents(base_path('.env'), preg_replace(
             '/^# DB_PASSWORD=.*$/m',
-            'DB_PASSWORD=secret',
+            'DB_PASSWORD=',
             file_get_contents(base_path('.env'))
         ));
         $this->info('.env file updated successfully.');
