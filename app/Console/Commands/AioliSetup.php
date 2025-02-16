@@ -54,8 +54,6 @@ class AioliSetup extends Command
                 rename(base_path('.env.example'), base_path('.env'));
                 $this->info('.env file created successfully.');
                 $this->updateEnv();                
-                // Delete .env.example
-                // unlink(base_path('.env.example'));
             } else {
                 $this->error('.env.example file not found.');
                 return;
@@ -63,15 +61,6 @@ class AioliSetup extends Command
         } else {
             $this->info('.env file already exists.');
         }
-
-        // $this->info('Updating APP_DOMAIN in .env...');
-        // $appDomain = parse_url(config('app.url'), PHP_URL_HOST) ?: 'aioli-laravel.test';
-        // file_put_contents(base_path('.env'), preg_replace(
-        //     '/^APP_DOMAIN=.*$/m',
-        //     'APP_DOMAIN=' . $appDomain,
-        //     file_get_contents(base_path('.env'))
-        // ));
-        // $this->info('APP_DOMAIN updated to ' . $appDomain);
 
         $this->info('Generating application key...');
         Artisan::call('key:generate');
@@ -101,6 +90,10 @@ class AioliSetup extends Command
         } else {
             $this->error('Error building frontend assets.');
         }
+
+        // open /regiser in browser
+        $this->info('Opening browser...');
+        $process = new Process(['open', 'http://' . basename(base_path()) . '.test/register']);
 
         $this->info('Setup completed successfully.');
     }
