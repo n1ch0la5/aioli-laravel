@@ -1,13 +1,14 @@
 ## Laravel Backend Auth and Websockets for n1ch0la5/aioli-electron
 For use with Herd (non pro) with site secured (https)
 
+## prereqs
+- Herd
+- "Open Terminal Programmatically" vscode extension. 
+- Only tested on Mac
+
 ## setup
-- secure your site (click the lock in the herd Sites page)
-- composer install
-- Run `php artisan aioli:setup`
+- Start with the cli tool at [n1ch0la5/aioli-cli](https://github.com/n1ch0la5/aioli-cli)
 - Create a new user at /register. save the password to put in the electron .env file
-- Install "Open Terminal Programmatically" vscode extension if you haven't already. 
-- Run `node startdev.js` to start up dev server/reverb/horizon/pulse
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
