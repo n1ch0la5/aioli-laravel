@@ -24,8 +24,18 @@ const programs = [
   },
 ];
 
+// Detect platform
+const isWindows = process.platform === 'win32';
+const openCommand = isWindows ? 'start' : 'open';
+
 programs.forEach((program, index) => {
   const programParams = { ...program, autoFocus: index === programs.length - 1 };
-
-  execSync(`open 'vscode://open.in-terminal?config=${JSON.stringify(programParams)}'`);
+  
+  if (isWindows) {
+    // Windows needs quotes around the URL but not single quotes around the whole command
+    execSync(`${openCommand} "vscode://open.in-terminal?config=${JSON.stringify(programParams)}"`);
+  } else {
+    // macOS needs single quotes around the whole URL
+    execSync(`${openCommand} 'vscode://open.in-terminal?config=${JSON.stringify(programParams)}'`);
+  }
 });
