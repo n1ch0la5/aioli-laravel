@@ -10,7 +10,7 @@ use App\Models\User;
 
 class AioliSetup extends Command
 {
-    protected $signature = 'aioli:setup {--no-browser : Do not open browser after setup}';
+    protected $signature = 'aioli:setup';
 
     protected $description = 'Runs the necessary setup commands and creates an admin user';
 
@@ -82,12 +82,12 @@ class AioliSetup extends Command
         }
 
         // Open browser only if --no-browser option is not set
-        if (!$this->option('no-browser')) {
-            $this->info('Opening browser...');
-            $appDomain = basename(base_path()) . '.test';
-            $process = new Process(['open', 'http://' . $appDomain]);
-            $process->run();
-        }
+        // if (!$this->option('no-browser')) {
+        //     $this->info('Opening browser...');
+        //     $appDomain = basename(base_path()) . '.test';
+        //     $process = new Process(['open', 'http://' . $appDomain]);
+        //     $process->run();
+        // }
 
         $this->info('Setup completed successfully.');
     }
