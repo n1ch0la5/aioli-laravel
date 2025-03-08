@@ -4,13 +4,15 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Process\Process;
+use App\Models\User;
 
 class AioliSetup extends Command
 {
-    protected $signature = 'aioli:setup';
+    protected $signature = 'aioli:setup {--no-browser : Do not open browser after setup}';
 
-    protected $description = 'Runs the necessary setup commands';
+    protected $description = 'Runs the necessary setup commands and creates an admin user';
 
     public function __construct()
     {
@@ -19,22 +21,6 @@ class AioliSetup extends Command
 
     public function handle()
     {
-        // Troubleshoot this:
-        //Failed to open stream: No such file or directory in /Users/nick/Code/aioli-laravel/artisan on line 9
-        
-        // $this->info('Installing composer dependencies...');
-        // $process = new Process([base_path('/Users/nick/Library/Application Support/Herd/bin//composer'), 'install']);
-        // $process->run(function ($type, $buffer) {
-        //     echo $buffer;
-        // });
-
-        // if ($process->isSuccessful()) {
-        //     $this->info('Composer dependencies installed successfully.');
-        // } else {
-        //     $this->error('Error installing composer dependencies.');
-        //     return;
-        // }
-
         $this->info('Installing npm dependencies...');
         $process = new Process(['npm', 'install']);
         $process->run(function ($type, $buffer) {
@@ -78,6 +64,9 @@ class AioliSetup extends Command
         Artisan::call('migrate', ['--force' => true]);
         $this->info(Artisan::output());
 
+        // Create admin user
+        $this->createAdminUser();
+
         $this->info('Building frontend assets...');
         $process = new Process(['npm', 'run', 'build']);
         $process->setWorkingDirectory(base_path());
@@ -89,13 +78,65 @@ class AioliSetup extends Command
             $this->info('Frontend assets built successfully.');
         } else {
             $this->error('Error building frontend assets.');
+            return;
         }
 
-        // open /regiser in browser
-        $this->info('Opening browser...');
-        $process = new Process(['open', 'http://' . basename(base_path()) . '.test/register']);
+        // Open browser only if --no-browser option is not set
+        if (!$this->option('no-browser')) {
+            $this->info('Opening browser...');
+            $appDomain = basename(base_path()) . '.test';
+            $process = new Process(['open', 'http://' . $appDomain]);
+            $process->run();
+        }
 
         $this->info('Setup completed successfully.');
+    }
+
+    /**
+     * Create admin user with predefined credentials
+     *
+     * @return void
+     */
+    protected function createAdminUser()
+    {
+        $this->info('Creating admin user...');
+        
+        // Email and password for the admin user
+        $email = 'admin@aioli.com';
+        $password = 'WJjtLXciTd&aI!8d'; // Strong password for security
+        
+        // Check if user already exists
+        $existingUser = User::where('email', $email)->first();
+        
+        if ($existingUser) {
+            $this->info("Admin user already exists with email: {$email}");
+            return;
+        }
+        
+        try {
+            // Create a new admin user
+            $user = User::create([
+                'name' => 'Admin',
+                'email' => $email,
+                'password' => Hash::make($password),
+                'email_verified_at' => now(),
+            ]);
+            
+            // Add any admin role/permissions if your app uses them
+            // $user->assignRole('admin'); // Uncomment if using Spatie permissions
+            
+            $this->info("Admin user created successfully with:");
+            $this->info("Email: {$email}");
+            $this->info("Password: {$password}");
+            
+            // Write the credentials to a local file for reference
+            $credentialsFile = base_path('admin-credentials.txt');
+            file_put_contents($credentialsFile, "Admin Credentials\n----------------\nEmail: {$email}\nPassword: {$password}\n");
+            $this->info("Admin credentials saved to: {$credentialsFile}");
+            
+        } catch (\Exception $e) {
+            $this->error("Failed to create admin user: " . $e->getMessage());
+        }
     }
 
     public function updateEnv(){
